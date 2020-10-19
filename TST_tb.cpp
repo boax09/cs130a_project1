@@ -10,15 +10,7 @@ using namespace std;
 
 int main(int argc, char* argv[]){
     TST t1;
-    t1.insert("hello");
-    t1.insert("hello");
-    t1.insert("yesterday");
-    t1.insert("yesterday");
-    t1.insert("yesterday");
-    t1.insert("band");
-    t1.insert("bankers");
-    t1.insert("bat");
-    t1.insert("cab");
+    
 
     for(int i= 0; i< argc; i++){
 
@@ -47,6 +39,8 @@ int main(int argc, char* argv[]){
             } else if (temp > 0){
                 cout<< string(argv[i+1]) + " deleted, new count = " + to_string(temp) + "\n";
             
+            } else {
+                cout<< string(argv[i+1]) + " deleted\n";
             }
 
         }
@@ -64,7 +58,6 @@ int main(int argc, char* argv[]){
 
     return 0;
 }
-
 
 
 

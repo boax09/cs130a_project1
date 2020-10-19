@@ -50,7 +50,7 @@ class TST
 
     void printInOrder(Node *n); //print in order 
     int insert(string word, Node *n); //helper function
-    int remove(string word, Node *n); //helper function
+    int removeHARD(string word, Node *n); //helper function
     Node* lookup(string word, Node *n); //helper function
     void search(string word1, string word2, Node *n);//helper function 
 

@@ -185,6 +185,106 @@ int TST::insert(string word, Node *n)
     return false;
 }
 
+int TST::removeHARD(string word, Node *n){
+/*2)Removing node w no children
+    Removing 1 key
+        If it is right key, move left key over to right
+        If it is left key, do nothing
+    Removing last key
+        Delete node
+
+3)Removing node with children
+    Removing 1 key
+        Erase the key, if it is right key, shift left key over to right
+        If it is left key, do nothing
+    Removing last key
+    Node* getNode(word,root);
+*/
+    Node* x = getNode(word,root);
+
+    //if deleting only 1 of 2 keys
+    if( (word == x->leftkey.first && (x->rightkey.first != "")) || (word == x->rightkey.first && (x->leftkey.first != "")) ){
+        //if deleting the left key
+        if(word == x->leftkey.first){
+            //go into mid and farthest left and replace that left key w the deleted key
+            if(x->mid){
+                Node* temp = x->mid;
+                while(temp->left){
+                    temp = temp->left;
+                }
+
+                if(temp->leftkey.first != ""){
+                    x->leftkey.first = temp->leftkey.first;
+                    x->leftkey.second = temp->leftkey.second;
+                    temp->leftkey.first = "";
+                    temp->leftkey.second = 0;
+                    return 0;
+                } else {
+                    x->leftkey.first = temp->rightkey.first;
+                    x->leftkey.second = temp->rightkey.second;
+                    removeHARD(temp->rightkey.first,temp);
+                    
+                }
+            } else {
+                x->leftkey.first = "";
+                x->leftkey.second = 0;
+                return 0;
+            }
+        } else{
+            //if deleting right key
+            //if mid exists, go through right tree and keep going right
+            if(x->mid){
+                Node* temp = x->mid;
+                while(temp->right){
+                    temp = temp->right;
+                }
+
+                if(temp->leftkey.first != ""){
+                    x->rightkey.first = temp->leftkey.first;
+                    x->rightkey.second = temp->leftkey.second;
+                    temp->leftkey.first = "";
+                    temp->leftkey.second = 0;
+                    return 0;
+                } else {
+                    x->rightkey.first = temp->rightkey.first;
+                    x->rightkey.second = temp->rightkey.second;
+                    removeHARD(temp->rightkey.first,temp);
+                }
+
+            } else {
+                //if mid doesn't exist
+                //replace right key with left key, let left key be 0
+                x->rightkey.first = x->leftkey.first;
+                x->rightkey.second = x->leftkey.second;
+
+                x->leftkey.first = "";
+                x->leftkey.second = 0;
+                return 0;
+            }
+
+        }
+
+    }
+    
+    //if deleting last key in node
+     if( (word == x->leftkey.first && (x->rightkey.first == "")) || (word == x->rightkey.first && (x->leftkey.first == "")) ){
+            delete x;
+            return 0;
+    }
+
+
+    
+
+
+    return 0;
+
+}
+
+
+
+
+
+
 
 
 
@@ -209,37 +309,13 @@ int TST::remove(string word)
         }
     }
 
+    return removeHARD(word,root);
 
-
-    return false;
 
 } //remove a word from TST if count == 1, if not -1;
 
 
-int TST::remove(string word, Node *n){
 
-/*
-2)Removing node w no children
-    Removing 1 key
-        If it is right key, move left key over to right
-        If it is left key, do nothing
-    Removing last key
-        Delete node
-
-3)Removing node with children
-    Removing 1 key
-        Erase the key, if it is right key, shift left key over to right
-        If it is left key, do nothing
-    Removing last key
-
-
-
-
-*/
-
-return 0;
-
-}
 
 TST::Node* TST::getNode(string word, Node *n){
     if(!n){
