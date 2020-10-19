@@ -7,13 +7,28 @@ using namespace std;
 
 TST::TST() : root(0) { } //constructor
 
+void TST::clear(Node *n){
+    if(n){
+        clear(n->left);
+        clear(n->mid);
+        clear(n->right);
+        delete n;
+
+    }
+
+
+}
+
+
 
 TST::~TST()
 {
 //
-
+ clear(root);
 
 } //destructor
+
+
 
 int TST::lookup(string word)
 {

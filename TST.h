@@ -55,6 +55,7 @@ class TST
     void search(string word1, string word2, Node *n);//helper function 
 
     Node* getNode(string word, Node* n); //helper function that finds the Node
+    void clear(Node* n); //recursive helper for deleting TST
     Node *root;
 
 
