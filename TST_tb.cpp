@@ -57,8 +57,6 @@ int main(int argc, char* argv[]){
             t1.search(word1,word2);
             i = i+3;
 
-
-
         }
 
 
