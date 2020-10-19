@@ -1,6 +1,7 @@
 #include <iostream>
 #include "TST.h"
 
+
 #include <vector>
 
 using namespace std;
@@ -21,15 +22,19 @@ int main(int argc, char* argv[]){
     for(int i = 0; i < words.size(); i++){
         if( words[i] == ' ' || words[i] == ','){
             
-            if( temp != "")
+            if( temp != ""){
             allwords.push_back(temp);
             temp = "";
+            }
         } else {
             temp = temp + words[i];
 
         }
+        
     }
-    
+    allwords.push_back(temp);
+
+
    
 
     for(int i= 0; i< allwords.size() ; i++){
