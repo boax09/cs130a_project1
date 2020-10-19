@@ -1,6 +1,5 @@
 #include <iostream>
 #include "TST.h"
-#include "TST.cpp"
 
 using namespace std;
 
